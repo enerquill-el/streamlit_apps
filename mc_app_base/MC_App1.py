@@ -1438,7 +1438,8 @@ Profile_years = df.columns[2:].tolist()
 # -----------------------------------------------------
 # Apply Economic Cut-off to Calculations
 # -----------------------------------------------------
-
+Profile_production_base = np.array(Profile_production_base, dtype=float)
+Profile_price_base = np.array(Profile_price_base, dtype=float)
 Profile_revenue_base = Profile_production_base * Profile_price_base 
 
 # Identify Economic Cut-off post Revenue-based Royalty
