@@ -851,11 +851,6 @@ with excel_input_col:
             st.error(f"Error reading file: {e}")
             df = None            
 
-if 'df' not in st.session_state:
-    st.session_state.df = df.copy() if df is not None else None
-else:
-    # Use the persisted df for processing
-    df = st.session_state.df
   
 st.markdown("---")
 
@@ -1355,7 +1350,7 @@ if df is not None and prod_enabled:
 df.columns = df.iloc[0]
 df.columns = [int(col) if str(col).replace('.0','').isdigit() else col for col in df.columns]
 df = df[1:].reset_index(drop=True)
-st.session_state.df = df.copy()
+
 
 # ----------------------------------------------------
 # Display DataFrame using AgGrid
@@ -1392,7 +1387,7 @@ if df is not None:
     st.caption("Production data is replaced by dynamic production generator if **Enable Dynamic Production & Sensitivities** is checked.")
     st.caption("Demo Limitations: Multiple rows of uploaded data within the same categories (e.g. Capex, Opex, Production) are aggregated for sensitivity analysis, maximum P90 production years are limited to 50 and cash flow lengths are automatically adjusted to fit P90 production profiles when production sensitivities are enabled.")
     AgGrid(
-        st.session_state.df,
+        df,
         gridOptions=grid_options,
         height=grid_height,
         fit_columns_on_grid_load=False,
@@ -1403,7 +1398,7 @@ if df is not None:
 else:
     st.info("Upload a file or provide a valid default file to view the data.")
 
-excel_data = to_excel(st.session_state.df)
+excel_data = to_excel(df)
 st.download_button(
     label="📥 Download Table as Excel",
     data=excel_data,
