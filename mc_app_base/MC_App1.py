@@ -1464,8 +1464,6 @@ Profile_years_numeric = pd.Series(pd.to_numeric(df.columns[2:], errors='coerce')
 valid_mask = Profile_years_numeric.notna()
 Profile_years_numeric = Profile_years_numeric[valid_mask].astype(int).to_numpy()
 
-st.write(Profile_years_numeric)
-
 max_year = Profile_years_numeric[max_pos]  # now it's an int
 econ_cutoff_flag = (Profile_years_numeric <= max_year).astype(float)
 chart_length = int(sum(econ_cutoff_flag))
@@ -1483,9 +1481,6 @@ Profile_royalty = Rate_royalty_revenue * Profile_revenue_base
 
 Profile_pre_tax_cf_display = Profile_revenue_base - Profile_royalty - Profile_capex_base - Profile_opex_base
 Profile_pre_tax_cf_cum_display = Profile_pre_tax_cf_display.cumsum()
-
-st.write(Profile_years)
-st.write(len(Profile_years))
 
 pre_tax_cf_rows = [
     ("Production", "MMbbl / yr", Profile_production_base),
