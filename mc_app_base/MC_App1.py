@@ -1225,6 +1225,7 @@ with st.sidebar:
 # Generate first the P90 resource profile 
 if df is not None and prod_enabled:
     df = df.dropna(axis=1, how='all')
+    df.iloc[:,0] = df.iloc[;, 0].astype(str)
     
     numeric_cols = df.select_dtypes(include=['int64', 'float64', 'Int64']).columns
 
