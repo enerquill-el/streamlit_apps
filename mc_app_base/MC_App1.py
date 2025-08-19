@@ -782,6 +782,17 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+st.markdown(
+    """
+    <style>
+    html, body, [class*="css"]  {
+        font-family: 'Inter', sans-serif;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 
 #------------------------------
 # File upload and instructions
