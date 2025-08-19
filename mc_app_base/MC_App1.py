@@ -1476,6 +1476,8 @@ Profile_royalty = Rate_royalty_revenue * Profile_revenue_base
 Profile_pre_tax_cf_display = Profile_revenue_base - Profile_royalty - Profile_capex_base - Profile_opex_base
 Profile_pre_tax_cf_cum_display = Profile_pre_tax_cf_display.cumsum()
 
+st.write(Profile_years)
+
 pre_tax_cf_rows = [
     ("Production", "MMbbl / yr", Profile_production_base),
     ("Price", "USD / bbl", Profile_price_base), 
@@ -1501,7 +1503,7 @@ for i, year in enumerate(Profile_years):
         ((data.iloc[i] if isinstance(data, pd.Series) else data[i]) != "") else ""
         for _, _, data in pre_tax_cf_rows
     ]
-st.write(Profile_years)
+    
 
 df_pre_tax_cf_display = pd.DataFrame(pre_tax_cf_data_dict)
 
