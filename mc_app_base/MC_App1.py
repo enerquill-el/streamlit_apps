@@ -1455,8 +1455,8 @@ Profile_pre_tax_cf_base = Profile_revenue_base * (1 - Rate_royalty_revenue) - Pr
 Profile_pre_tax_cf_cum_base = Profile_pre_tax_cf_base.cumsum()
 
 # Find the position of the max cumulative cash flow
-max_pos = Profile_pre_tax_cf_cum_base.values.argmax()
-max_val = Profile_pre_tax_cf_cum_base.values[max_pos]
+max_pos = Profile_pre_tax_cf_cum_base.argmax()
+max_val = Profile_pre_tax_cf_cum_base[max_pos]
 
 Profile_years_numeric = np.array([int(y) for y in Profile_years])
 max_year = Profile_years_numeric[max_pos]  # now it's an int
