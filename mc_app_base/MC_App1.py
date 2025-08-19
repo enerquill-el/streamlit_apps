@@ -1433,8 +1433,7 @@ opex_rows = df.loc[opex_rows_mask, df.columns[2:]]
 Profile_opex_base = opex_rows.sum(axis=0)
 
 # Extract the header, excluding the description and unit
-Profile_years = df.columns[2:].tolist()
-st.write(Profile_years)
+Profile_years = df.columns[2:]
 
 # -----------------------------------------------------
 # Apply Economic Cut-off to Calculations
