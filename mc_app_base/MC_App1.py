@@ -1435,6 +1435,8 @@ Profile_opex_base = opex_rows.sum(axis=0)
 # Extract the header, excluding the description and unit
 Profile_years = [col for col in df.columns if col.isdigit()]
 
+st.write(Profile_years)
+
 # -----------------------------------------------------
 # Apply Economic Cut-off to Calculations
 # -----------------------------------------------------
@@ -1467,6 +1469,8 @@ Profile_years_numeric = Profile_years_numeric.dropna().to_numpy(dtype=int)
 max_year = Profile_years_numeric[max_pos]  # now it's an int
 econ_cutoff_flag = (Profile_years_numeric <= max_year).astype(float)
 chart_length = int(sum(econ_cutoff_flag))
+
+
 
 # -----------------------------------------------------
 # Display Pre-Tax Calculations
