@@ -1435,8 +1435,6 @@ Profile_opex_base = opex_rows.sum(axis=0)
 # Extract the header, excluding the description and unit
 Profile_years = [col for col in df.columns if col.isdigit()]
 
-st.write(Profile_years)
-
 # -----------------------------------------------------
 # Apply Economic Cut-off to Calculations
 # -----------------------------------------------------
@@ -1463,7 +1461,8 @@ max_val = Profile_pre_tax_cf_cum_base[max_pos]
 
 
 Profile_years_numeric = pd.to_numeric(Profile_years, errors='coerce')
-Profile_years_numeric = Profile_years_numeric.dropna().to_numpy(dtype=int)
+valid_mask = ~Profile_years_numeric.isna()
+Profile_years_numeric = Profile_years_numeric[valid_mask].astype(int).to_numpy()
 
 
 max_year = Profile_years_numeric[max_pos]  # now it's an int
