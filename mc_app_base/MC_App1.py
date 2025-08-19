@@ -785,13 +785,24 @@ st.markdown(
 st.markdown(
     """
     <style>
+    /* Keep your preferred font globally */
     html, body, [class*="css"]  {
-        font-family: 'Inter', sans-serif;
+        font-family: 'Inter', system-ui, sans-serif !important;
+    }
+
+    /* Ensure Streamlit sidebar collapse button displays correctly */
+    [data-testid="collapsedControl"] svg {
+        display: inline !important;  /* show the arrow icon */
+    }
+    [data-testid="collapsedControl"]::before {
+        content: '>>';  /* fallback if icon fails */
+        font-family: 'Inter', system-ui, sans-serif;
     }
     </style>
     """,
     unsafe_allow_html=True
 )
+
 
 
 #------------------------------
