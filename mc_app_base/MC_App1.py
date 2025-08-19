@@ -1464,6 +1464,7 @@ Profile_years_numeric = pd.to_numeric(Profile_years, errors='coerce')
 valid_mask = ~Profile_years_numeric.isna()
 Profile_years_numeric = Profile_years_numeric[valid_mask].astype(int).to_numpy()
 
+st.write(Profile_years_numeric)
 
 max_year = Profile_years_numeric[max_pos]  # now it's an int
 econ_cutoff_flag = (Profile_years_numeric <= max_year).astype(float)
