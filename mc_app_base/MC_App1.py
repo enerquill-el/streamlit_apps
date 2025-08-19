@@ -1461,7 +1461,7 @@ max_val = Profile_pre_tax_cf_cum_base[max_pos]
 
 
 Profile_years_numeric = pd.to_numeric(Profile_years, errors='coerce')
-valid_mask = ~Profile_years_numeric.isna()
+valid_mask = Profile_years_numeric.notna()
 Profile_years_numeric = Profile_years_numeric[valid_mask].astype(int).to_numpy()
 
 st.write(Profile_years_numeric)
