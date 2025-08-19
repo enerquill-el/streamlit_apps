@@ -1,0 +1,9 @@
+streamlit
+pandas
+numpy
+scipy
+numpy-financial
+matplotlib
+Pillow
+st-aggrid
+streamlit-toggle
