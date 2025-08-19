@@ -1,9 +1,9 @@
-streamlit
+streamlit==1.48.1
 pandas
 numpy
 scipy
 numpy-financial
 matplotlib
 Pillow
-st-aggrid
+streamlit-aggrid
 streamlit-toggle
