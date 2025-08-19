@@ -1458,7 +1458,7 @@ Profile_pre_tax_cf_cum_base = Profile_pre_tax_cf_base.cumsum()
 max_pos = Profile_pre_tax_cf_cum_base.argmax()
 max_val = Profile_pre_tax_cf_cum_base[max_pos]
 
-Profile_years_numeric = np.array([int(y) for y in Profile_years])
+Profile_years_numeric = pd.to_numeric(Profile_years, errors='coerce').to_numpy()
 max_year = Profile_years_numeric[max_pos]  # now it's an int
 econ_cutoff_flag = (Profile_years_numeric <= max_year).astype(float)
 chart_length = int(sum(econ_cutoff_flag))
