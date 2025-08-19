@@ -786,7 +786,7 @@ st.markdown(
 #------------------------------
 # File upload and instructions
 #------------------------------
-default_file_path = "Default.xlsx"
+default_file_path = "mc_app_base/Default.xlsx"
 
 instructions_col, _, excel_input_col = st.columns([3, 0.2, 1.5])
 with instructions_col:
