@@ -1501,6 +1501,7 @@ for i, year in enumerate(Profile_years):
         ((data.iloc[i] if isinstance(data, pd.Series) else data[i]) != "") else ""
         for _, _, data in pre_tax_cf_rows
     ]
+st.write(Profile_years)
 
 df_pre_tax_cf_display = pd.DataFrame(pre_tax_cf_data_dict)
 
