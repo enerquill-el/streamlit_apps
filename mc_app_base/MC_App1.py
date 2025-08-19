@@ -1348,6 +1348,9 @@ if df is not None and prod_enabled:
 
     df = df.iloc[:, :2 + target_len]  
 
+numeric_cols = df.select_dtypes(include=['int64', 'Int64', 'float64']).columns
+df[numeric_cols] = df[numeric_cols].astype(float)
+
 df.columns = df.iloc[0]
 df.columns = [int(col) if str(col).replace('.0','').isdigit() else col for col in df.columns]
 df = df[1:].reset_index(drop=True)
