@@ -1477,6 +1477,7 @@ Profile_pre_tax_cf_display = Profile_revenue_base - Profile_royalty - Profile_ca
 Profile_pre_tax_cf_cum_display = Profile_pre_tax_cf_display.cumsum()
 
 st.write(Profile_years)
+st.write(len(Profile_years))
 
 pre_tax_cf_rows = [
     ("Production", "MMbbl / yr", Profile_production_base),
