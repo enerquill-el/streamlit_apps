@@ -703,7 +703,7 @@ def plot_tornado(df, base_case_NPV):
 # --------------------------------------------------------------
 # Configure page for wide layout and title
 # --------------------------------------------------------------
-st.set_page_config("Monte Carlo simulation", layout="wide")
+st.set_page_config("Monte Carlo simulation", layout="wide", initial_sidebar_state="expanded")
 st.title("Monte Carlo Simulator")
 st.caption("*This simulator has been designed to demonstrate functionality and simplified assumptions have been used. Outputs from this simulator should not be used for decision making purposes.*")
 st.write("")
@@ -764,23 +764,6 @@ plt.rcParams.update({
     'ytick.labelsize': 9,  # Font size for Y-axis tick labels
     'legend.fontsize': 9   # Font size for legend
 })
-
-st.markdown(
-    """
-    <style>
-    /* Set default sidebar width */
-    [data-testid="stSidebar"][aria-expanded="true"]{
-        width: 400px;
-    }
-
-    /* Optional: collapse sidebar width */
-    [data-testid="stSidebar"][aria-expanded="false"]{
-        width: 50px;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
 
 st.markdown(
     """
