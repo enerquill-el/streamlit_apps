@@ -1448,6 +1448,9 @@ if fiscal_regime == "Concession" and royalty_basis == "Revenues":
 else:
     Rate_royalty_revenue = 0
 
+Profile_capex_base = np.array(Profile_capex_base, dtype=float)
+Profile_opex_base = np.array(Profile_opex_base, dtype=float)
+
 Profile_pre_tax_cf_base = Profile_revenue_base * (1 - Rate_royalty_revenue) - Profile_capex_base - Profile_opex_base
 Profile_pre_tax_cf_cum_base = Profile_pre_tax_cf_base.cumsum()
 
