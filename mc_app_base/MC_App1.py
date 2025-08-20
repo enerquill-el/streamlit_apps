@@ -510,8 +510,8 @@ def plot_P50_cashflow(years_array, revenue_array, capex_array, opex_array, govt_
         if tick < 0:
             label.set_color('red')
 
-    #add_watermark(fig, ax, "Enerquill_Logo.webp")
-    add_watermark(ax, "Enerquill_Logo.webp")
+    #add_watermark(fig, ax, "mc_app_base/Enerquill_Logo.webp")
+    add_watermark(ax, "mc_app_base/Enerquill_Logo.webp")
     st.pyplot(fig)
 
 # Function - Plot P50 Cashflows with NCF Ranges
@@ -621,7 +621,7 @@ def plot_P50_cashflow_with_ranges(years_array, revenue_array, capex_array, opex_
             label.set_color('red')
 
     #add_watermark(fig, ax, "Enerquill_Logo.webp")
-    add_watermark(ax, "Enerquill_Logo.webp")
+    add_watermark(ax, "mc_app_base/Enerquill_Logo.webp")
     st.pyplot(fig)
 
 # Function - Plot Tornado Chart
@@ -696,7 +696,7 @@ def plot_tornado(df, base_case_NPV):
 
     fig.subplots_adjust(left=0.25, right=0.95, top=0.95, bottom=0.15)
     plt.tight_layout()
-    add_watermark(ax, "Enerquill_Logo.webp", 1, 0.1)
+    add_watermark(ax, "mc_app_base/Enerquill_Logo.webp", 1, 0.1)
 
     st.pyplot(fig)
 
@@ -2061,7 +2061,7 @@ def plot_s_curve(df, column, kind='S-Curve', metric_label="NPV (USD mln)", pzero
     ax.axhline(y=prob_gt_zero, color='red', linestyle=':', linewidth=0.5, label=f'P(X >{pzero_threshold}) = {prob_gt_zero:.2f}')
     ax.legend(frameon=True, fontsize=6, framealpha=0.9, facecolor='white', edgecolor='#dddddd')
     plt.tight_layout()
-    add_watermark(ax, "Enerquill_Logo.webp", 1, 0.15)
+    add_watermark(ax, "mc_app_base/Enerquill_Logo.webp", 1, 0.15)
     st.pyplot(fig)
 
 if run_monte_carlo and run_mc_button: 
