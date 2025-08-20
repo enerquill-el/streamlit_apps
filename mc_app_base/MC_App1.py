@@ -1133,7 +1133,7 @@ with st.sidebar:
     st.write("---")
 
     st.header("Output Selections")
-    st.caption("When enabled, **Run Monte Carlo** generates probabilistic economic metrics. Otherwise, the outputs only include P50 economic metrics.")
+    st.caption("When enabled, **Include Monte Carlo** generates probabilistic economic metrics. Otherwise, the outputs only include P50 economic metrics.")
     mc_label_space = 2
     mc_label_toggle = 1.5
 
@@ -1214,7 +1214,7 @@ with st.sidebar:
         st.write("")
         _, run_mc_col,_ = st.columns([0.5, 2, 0.5])
         with run_mc_col:
-            run_mc_button = st.button("▶ Run Monte Carlo Simulation", type="primary")
+            run_mc_button = st.button("▶ Run Simulation", type="primary")
             progress_placeholder = st.empty()
             time_placeholder = st.empty()
       
@@ -2083,7 +2083,11 @@ def plot_s_curve(df, column, kind='S-Curve', metric_label="NPV (USD mln)", pzero
 
 if run_monte_carlo and run_mc_button: 
     if show_NPV_dist:
+        font_size("NPV Distribution", 18)
+        st.caption("This demo has defaulted to Probability > NPV0 as a feature")
         plot_s_curve(df_results, "NPV", s_curve_type, "NPV (USD mln)")
 
     if show_IRR_dist:
+        font_size("IRR Distribution", 18)
+        st.caption("This demo has defaulted to Probability > 10% IRR as a feature")
         plot_s_curve(df_results, "IRR", s_curve_type, "IRR (%)", 10)
