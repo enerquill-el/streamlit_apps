@@ -51,11 +51,16 @@ def description_checkbox(descriptor):
 
 # Function - Write Data to Excel
 def to_excel(df):
+    # Defensive cleanup of AgGrid artifacts
+    if "autoID" in df.columns:
+        df = df.drop(columns=["autoID"])
+    elif str(df.columns[-1]).lower().isdigit():
+        df = df.iloc[:, :-1]
+
     output = io.BytesIO()
-    with pd.ExcelWriter(output, engine='openpyxl') as writer:
-        df.to_excel(writer, index=False, sheet_name='Sheet1')
-    processed_data = output.getvalue()
-    return processed_data
+    with pd.ExcelWriter(output, engine="openpyxl") as writer:
+        df.to_excel(writer, index=False, sheet_name="Sheet1")
+    return output.getvalue()
 
 # Function - Find First Year
 def find_first_production(production_array):
