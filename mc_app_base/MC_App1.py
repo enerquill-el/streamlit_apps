@@ -836,7 +836,7 @@ with excel_input_col:
                 row_indices = [col_a[col_a.str.contains(word)].index[0] for word in required_words]
                 
                 for idx in row_indices:
-                    row_data = df.iloc[idx, 1:]
+                    row_data = df.iloc[idx, 2:]
                     df.iloc[idx, 1:] = pd.to_numeric(row_data, errors="coerce").fillna(0).astype(float)
                 st.success("✅ Uploaded File with Sufficient Data")
                 
