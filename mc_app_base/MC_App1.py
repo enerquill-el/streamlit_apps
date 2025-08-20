@@ -1572,7 +1572,7 @@ discount_factor = (1 + discount_rate) ** (-discount_years)
 
 st.write("Type Prod base",type(Profile_production_base))
 st.write("Len Prod base", len(Profile_production_base))
-st.write("Target Len")
+st.write("Target Len", target_len)
 st.write(Profile_production_base)
 st.write(econ_cutoff_flag)
 st.write("Type Econ flag", type(econ_cutoff_flag))
