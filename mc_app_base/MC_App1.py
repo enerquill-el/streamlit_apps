@@ -1570,10 +1570,19 @@ discount_factor = (1 + discount_rate) ** (-discount_years)
 # Set the time series length based on economic cut-off
 # -----------------------------------------------------
 
+st.write("Type Prod base",type(Profile_production_base))
+st.write("Len Prod base", len(Profile_production_base))
+st.write("Type Econ flag", type(econ_cut_off_flag))
+st.write("Len Econ flag", len(econ_cut_off_flag))
+
+
+
+
 Production_P50 = Profile_production_base * econ_cutoff_flag
 Opex_P50 = Profile_opex_base * econ_cutoff_flag
 Capex_P50 = Profile_capex_base * econ_cutoff_flag
 Revenue_P50 = Production_P50 * Profile_price_base
+
 
 # -----------------------------------------------------
 # Calculate P50 Metrics
