@@ -51,11 +51,9 @@ def description_checkbox(descriptor):
 
 # Function - Write Data to Excel
 def to_excel(df):
-    # Defensive cleanup of AgGrid artifacts
-    if "autoID" in df.columns:
-        df = df.drop(columns=["autoID"])
-    elif str(df.columns[-1]).lower().isdigit():
-        df = df.iloc[:, :-1]
+    # Drop AgGrid's internal ID column if present
+    if "::auto_unique_id::" in df.columns:
+        df = df.drop(columns=["::auto_unique_id::"])
 
     output = io.BytesIO()
     with pd.ExcelWriter(output, engine="openpyxl") as writer:
