@@ -427,7 +427,7 @@ def plot_P50_cashflow(years_array, revenue_array, capex_array, opex_array, govt_
     ncf = revenue_array - capex_array - opex_array - govt_take_array
     cumulative_ncf = np.cumsum(ncf)
 
-    fig, ax = plt.subplots(figsize=(14,5), facecolor='none')
+    fig, ax = plt.subplots(figsize=(14,4), facecolor='none')
     ax.set_facecolor('white')
 
     # Revenues (positive bars)
@@ -532,7 +532,7 @@ def plot_P50_cashflow_with_ranges(years_array, revenue_array, capex_array, opex_
     ncf = revenue_array - capex_array - opex_array - govt_take_array
     cumulative_ncf = np.cumsum(ncf)
 
-    fig, ax = plt.subplots(figsize=(14,5), facecolor='none')
+    fig, ax = plt.subplots(figsize=(14,4), facecolor='none')
     ax.set_facecolor('white')
 
     # Revenues (positive bars)
