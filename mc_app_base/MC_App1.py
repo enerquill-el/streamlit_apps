@@ -1570,16 +1570,9 @@ discount_factor = (1 + discount_rate) ** (-discount_years)
 # Set the time series length based on economic cut-off
 # -----------------------------------------------------
 
-st.write("Type Prod base",type(Profile_production_base))
-st.write("Len Prod base", len(Profile_production_base))
-st.write("Target Len", target_len)
-st.write(Profile_production_base)
-st.write(econ_cutoff_flag)
-st.write("Type Econ flag", type(econ_cutoff_flag))
-st.write("Len Econ flag", len(econ_cutoff_flag))
-
-
-
+min_len = min(len(Profile_production_base), len(econ_cutoff_flag))
+Profile_production_base = Profile_production_base[:min_len]
+econ_cutoff_flag = econ_cutoff_flag[:min_len]
 
 Production_P50 = Profile_production_base * econ_cutoff_flag
 Opex_P50 = Profile_opex_base * econ_cutoff_flag
