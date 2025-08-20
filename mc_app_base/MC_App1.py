@@ -2064,8 +2064,18 @@ def plot_s_curve(df, column, kind='S-Curve', metric_label="NPV (USD mln)", pzero
     else:
         ax.set_xlim(left=data.min(), right=data.max())
     
-    prob_gt_zero = (data > pzero_threshold).sum() / len(data)
-    ax.axhline(y=prob_gt_zero, color='red', linestyle=':', linewidth=0.5, label=f'P(X >{pzero_threshold}) = {prob_gt_zero:.2f}')
+    if kind == 'Probability of Exceedance':
+        prob_gt_zero = 1 - (np.searchsorted(data, pzero_threshold, side='right') / n)
+    else:
+        prob_gt_zero = (np.searchsorted(data, pzero_threshold, side='right') / n)
+
+ax.axhline(
+    y=prob_gt_zero,
+    color='red',
+    linestyle=':',
+    linewidth=0.5,
+    label=f'P(X > {pzero_threshold}) = {prob_gt_zero:.2f}'
+)
     ax.legend(frameon=True, fontsize=6, framealpha=0.9, facecolor='white', edgecolor='#dddddd')
     plt.tight_layout()
     add_watermark(ax, "mc_app_base/Enerquill_Logo.webp", 1, 0.15)
@@ -2076,4 +2086,4 @@ if run_monte_carlo and run_mc_button:
         plot_s_curve(df_results, "NPV", s_curve_type, "NPV (USD mln)")
 
     if show_IRR_dist:
-        plot_s_curve(df_results, "IRR", s_curve_type, "IRR (%)")
+        plot_s_curve(df_results, "IRR", s_curve_type, "IRR (%)", 10)
