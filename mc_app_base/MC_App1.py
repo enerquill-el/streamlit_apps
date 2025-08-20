@@ -1258,7 +1258,7 @@ if df is not None and prod_enabled:
     while high_resource_list and high_resource_list[-1] == 0:
         high_resource_list.pop()
 
-    Profile_Production_P90 = [0.0] * leading_zeros + high_resource_list
+    Profile_Production_P90 = [0.0] * leading_zeros + high_resource_list + [0.0]
     time_series_len = len(Profile_Production_P90)
 
     Profile_Production_P50 = gen_production_profile(initial_prod_p50, resource_decline_rate_p50, resource_p50, facility_capacity, Profile_Production_P90, decline_model, b=b_value if decline_model == "Hyperbolic" else 0.5)
