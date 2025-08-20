@@ -1811,7 +1811,7 @@ if run_monte_carlo and run_mc_button:
 })
 
     elapsed_time = time.time() - start_time
-    time_placeholder.write(f"⏱️ Simulation completed in {elapsed_time:.2f} seconds")
+    time_placeholder.write(f"⏱️ Simulation completed in {elapsed_time:.2f} seconds. Imagine it faster on your local machine. Call us to see how!")
 
 if run_monte_carlo and run_mc_button:
         
