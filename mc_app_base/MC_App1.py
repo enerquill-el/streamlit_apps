@@ -1355,7 +1355,6 @@ df.columns = df.iloc[0]
 df.columns = [int(col) if str(col).replace('.0','').isdigit() else col for col in df.columns]
 df = df[1:].reset_index(drop=True)
 
-st.write(df)
 
 # ----------------------------------------------------
 # Display DataFrame using AgGrid
@@ -1364,6 +1363,7 @@ st.write(df)
 first_col = df.columns[0]
 second_col = df.columns[1] if len(df.columns) > 1 else None 
 
+st.write(first_col)
 
 if df is not None:
     df.columns = [str(col) for col in df.columns]
