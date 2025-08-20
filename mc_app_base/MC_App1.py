@@ -837,7 +837,7 @@ with excel_input_col:
                 
                 for idx in row_indices:
                     row_data = df.iloc[idx, 2:]
-                    df.iloc[idx, 1:] = pd.to_numeric(row_data, errors="coerce").fillna(0).astype(float)
+                    df.iloc[idx, 2:] = pd.to_numeric(row_data, errors="coerce").fillna(0).astype(float)
                 st.success("✅ Uploaded File with Sufficient Data")
                 
                 
