@@ -1153,7 +1153,7 @@ with st.sidebar:
 
     output_mc_label_col, output_mc_select_col= st.columns([mc_label_space, mc_label_toggle])
     with output_mc_label_col:
-        description("Run Monte Carlo")
+        description("Include Monte Carlo")
 
     with output_mc_select_col:
         run_monte_carlo = st_toggle_switch(label="", key="monte_carlo_toggle", default_value=False, label_after=True, inactive_color = '#55555', active_color="#21ba45", track_color="#29a745")
