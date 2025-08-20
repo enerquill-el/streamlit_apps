@@ -1226,6 +1226,9 @@ with st.sidebar:
 if df is not None and prod_enabled:
     df = df.dropna(axis=1, how='all')
     df.iloc[:,0] = df.iloc[:, 0].astype(str)
+
+    non_numeric_cols = df.columns[:2]
+    numeric_cols = df.columns.difference(non_numeric_cols)
     
     numeric_cols = df.select_dtypes(include=['int64', 'float64', 'Int64']).columns
 
