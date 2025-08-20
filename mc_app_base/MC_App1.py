@@ -1574,6 +1574,19 @@ min_len = min(len(Profile_production_base), len(econ_cutoff_flag))
 Profile_production_base = Profile_production_base[:min_len]
 econ_cutoff_flag = econ_cutoff_flag[:min_len]
 
+st.write("len", target_len)
+st.write("prod_len", len(Profile_production_base))
+st.write("econ_cutoff_len", len(econ_cutoff_flag))
+st.write("opex, capex, revenue", len(Opex_P50), len(Capex_P50), len(Revenue_P50))
+st.write("price", len(Profile_price_base))
+
+st.write("types")
+st.write("prod_len", type(Profile_production_base))
+st.write("econ_cutoff_len", type(econ_cutoff_flag))
+st.write("opex", type(Opex_P50))
+st.write("capex", type(Capex_P50))
+st.write("price", type(Profile_price_base))
+
 Production_P50 = Profile_production_base * econ_cutoff_flag
 Opex_P50 = Profile_opex_base * econ_cutoff_flag
 Capex_P50 = Profile_capex_base * econ_cutoff_flag
