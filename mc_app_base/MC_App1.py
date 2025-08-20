@@ -1221,6 +1221,7 @@ with st.sidebar:
 # -----------------------------------------
 # Generate Dynamic P50 Profile for Default
 # -----------------------------------------
+st.write(df)
 
 # Generate first the P90 resource profile 
 if df is not None and prod_enabled:
