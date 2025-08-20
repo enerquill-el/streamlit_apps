@@ -854,8 +854,6 @@ with excel_input_col:
   
 st.markdown("---")
 
-st.write(df)
-
 #------------------------------
 # Sidebar for Fiscal Inputs
 #------------------------------
@@ -1357,6 +1355,7 @@ df.columns = df.iloc[0]
 df.columns = [int(col) if str(col).replace('.0','').isdigit() else col for col in df.columns]
 df = df[1:].reset_index(drop=True)
 
+st.write(df)
 
 # ----------------------------------------------------
 # Display DataFrame using AgGrid
