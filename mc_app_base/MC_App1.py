@@ -1696,27 +1696,32 @@ if run_monte_carlo and run_mc_button:
     start_time = time.time()
     progress_bar = progress_placeholder.progress(0)
     mc_results = []
+    
+    capex_a, capex_c, capex_b = fit_triangular_from_p10_p50_p90(capex_p10_scalar, 1, capex_p90_scalar)
+    opex_a, opex_c, opex_b = fit_triangular_from_p10_p50_p90(opex_p10_scalar, 1, opex_p90_scalar)
+    if prod_enabled:
+        resource_mu, resource_sigma = fit_lognormal_from_p10_p50_p90(resource_p10, resource_p50, resource_p90)
 
+    MC_capex_scalars = np.random.triangular(capex_a, capex_c, capex_b, size=n_simulations)
+    MC_opex_scalars = np.random.triangular(opex_a, opex_c, opex_b, size=n_simulations)
+    
     for i in range(n_simulations):
         progress_bar.progress((i + 1) / n_simulations)
 
         # Fit Capex to distribution
-        capex_a, capex_c, capex_b = fit_triangular_from_p10_p50_p90(capex_p10_scalar, 1, capex_p90_scalar)
-        MC_capex_scalar = np.random.triangular(capex_a, capex_c, capex_b)
+        MC_capex_scalar = MC_capex_scalars[i]
+        MC_opex_scalar = MC_opex_scalars[i]
+        
         MC_capex_profile = Profile_capex_base * MC_capex_scalar
 
         # Fit Opex to distribution
-        opex_a, opex_c, opex_b = fit_triangular_from_p10_p50_p90(opex_p10_scalar, 1, opex_p90_scalar)
-        MC_opex_scalar = np.random.triangular(opex_a, opex_c, opex_b)
+        
         MC_opex_profile = Profile_opex_base * MC_opex_scalar
 
         if prod_enabled:
-            # Fit production parameters to distribution 
-            resource_mu, resource_sigma = fit_lognormal_from_p10_p50_p90(resource_p10, resource_p50, resource_p90)
+            # Fit production parameters to distribution  
             MC_resource = np.random.lognormal(resource_mu, resource_sigma)
-
             MC_production_profile = gen_production_profile(initial_prod_p50, resource_decline_rate_p50, MC_resource, facility_capacity, Profile_production_base, decline_model, b=b_value if decline_model == "Hyperbolic" else 0.5)
-
         else:
             MC_production_profile = Profile_production_base
 
