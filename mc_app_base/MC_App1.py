@@ -1571,21 +1571,11 @@ discount_factor = (1 + discount_rate) ** (-discount_years)
 # -----------------------------------------------------
 
 min_len = min(len(Profile_production_base), len(econ_cutoff_flag))
-Profile_production_base = Profile_production_base[:min_len]
 econ_cutoff_flag = econ_cutoff_flag[:min_len]
-
-st.write("len", target_len)
-st.write("prod_len", len(Profile_production_base))
-st.write("econ_cutoff_len", len(econ_cutoff_flag))
-st.write("opex, capex", len(Profile_opex_base), len(Profile_capex_base))
-st.write("price", len(Profile_price_base))
-
-st.write("types")
-st.write("prod_len", type(Profile_production_base))
-st.write("econ_cutoff_len", type(econ_cutoff_flag))
-st.write("opex", type(Profile_opex_base))
-st.write("capex", type(Profile_capex_base))
-st.write("price", type(Profile_price_base))
+Profile_production_base = Profile_production_base[:min_len]
+Profile_opex_base = Profile_opex_base[:min_len]
+Profile_capex_base = Profile_capex_base[:min_len]
+Profile_price_base = Profile_price_base[:min_len]
 
 Production_P50 = Profile_production_base * econ_cutoff_flag
 Opex_P50 = Profile_opex_base * econ_cutoff_flag
