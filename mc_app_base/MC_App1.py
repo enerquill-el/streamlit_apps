@@ -2069,13 +2069,13 @@ def plot_s_curve(df, column, kind='S-Curve', metric_label="NPV (USD mln)", pzero
     else:
         prob_gt_zero = (np.searchsorted(data, pzero_threshold, side='right') / n)
 
-ax.axhline(
-    y=prob_gt_zero,
-    color='red',
-    linestyle=':',
-    linewidth=0.5,
-    label=f'P(X > {pzero_threshold}) = {prob_gt_zero:.2f}'
-)
+    ax.axhline(
+        y=prob_gt_zero,
+        color='red',
+        linestyle=':',
+        linewidth=0.5,
+        label=f'P(X > {pzero_threshold}) = {prob_gt_zero:.2f}'
+    )
     ax.legend(frameon=True, fontsize=6, framealpha=0.9, facecolor='white', edgecolor='#dddddd')
     plt.tight_layout()
     add_watermark(ax, "mc_app_base/Enerquill_Logo.webp", 1, 0.15)
