@@ -2038,7 +2038,7 @@ if show_tornado_chart:
             Prod_P90_DCF = Prod_P90_NCF * discount_factor
             Prod_P90_NPV = np.sum(Prod_P90_DCF)
         else:
-            Prod_P90_NCF = calc_concession(Profile_capex_base, Production_P90, Profile_price_base, Profile_opex_base, royalty_rate) * Prod_P10_econ_flag
+            Prod_P90_NCF = calc_concession(Profile_capex_base, Production_P90, Profile_price_base, Profile_opex_base, royalty_rate) * Prod_P90_econ_flag
             Prod_P90_DCF = Prod_P90_NCF * discount_factor
             Prod_P90_NPV = np.sum(Prod_P90_DCF)
 
