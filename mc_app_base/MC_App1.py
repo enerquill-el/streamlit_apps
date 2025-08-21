@@ -1958,7 +1958,6 @@ if show_p50cf_chart:
 # -----------------------------------------------------
 # Calculate Inputs Required for Tornado
 # -----------------------------------------------------
-st.write(royalty_rate)
 def calc_econ_cutoff_flag(capex_array, price_array, production_array, opex_array, royalty_rate=royalty_rate if fiscal_regime == "Concession" and royalty_basis == "Revenues" else 0):
         revenue = price_array * production_array
         pretax_cf = revenue * ( 1 - royalty_rate/100) - capex_array - opex_array
@@ -1968,10 +1967,9 @@ def calc_econ_cutoff_flag(capex_array, price_array, production_array, opex_array
         flag[:max_pretax_cf_cum_idx+1] = 1
         return flag
 
-
 if show_tornado_chart:
     Capex_P10 = Capex_P50 * capex_p10_scalar
-    Capex_P10_econ_flag = calc_econ_cutoff_flag(Capex_P10, Profile_price_base, Profile_production_base, Profile_opex_base)
+    Capex_P10_econ_flag = calc_econ_cutoff_flag(Profile_capex_base, Profile_price_base, Profile_production_base, Profile_opex_base)
     if fiscal_regime == "Production Sharing Contract":
         Capex_P10_NCF = calc_PSC(Capex_P10, Profile_production_base, Profile_price_base, Profile_opex_base, psc_cost_recovery_ceiling) * Capex_P10_econ_flag
         Capex_P10_DCF = Capex_P10_NCF * discount_factor
