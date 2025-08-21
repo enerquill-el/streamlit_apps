@@ -538,8 +538,8 @@ def plot_P50_cashflow(years_array, revenue_array, capex_array, opex_array, govt_
         if tick < 0:
             label.set_color('red')
 
-    #add_watermark(fig, ax, "Enerquill_Logo.webp")
-    add_watermark(ax, "Enerquill_Logo.webp")
+    #add_watermark(fig, ax, "mc_app_base/Enerquill_Logo.webp")
+    add_watermark(ax, "mc_app_base/Enerquill_Logo.webp")
     st.pyplot(fig)
 
 # Function - Plot P50 Cashflows with NCF Ranges
@@ -674,7 +674,7 @@ def plot_P50_cashflow_with_ranges(years_array, revenue_array, capex_array, opex_
             label.set_color('red')
 
     #add_watermark(fig, ax, "Enerquill_Logo.webp")
-    add_watermark(ax, "Enerquill_Logo.webp")
+    add_watermark(ax, "mc_app_base/Enerquill_Logo.webp")
     st.pyplot(fig)
 
 
