@@ -686,7 +686,7 @@ def plot_tornado(df, base_case_NPV):
     df["Range"] = (df["HighDiff"] - df["LowDiff"]).abs()
     df = df.sort_values("Range", ascending=False).reset_index(drop=True)
 
-    fig, ax = plt.subplots(figsize=(7, 2), facecolor='none')
+    fig, ax = plt.subplots(figsize=(7, 2.5), facecolor='none')
     ax.set_facecolor('white')
 
     y_pos = np.arange(len(df))
@@ -2092,7 +2092,7 @@ def plot_s_curve(df, column, kind='S-Curve', metric_label="NPV (USD mln)", pzero
     quantiles = {p: val for p, val in zip(percentiles_selected, percentile_results)}
     quantiles['Mean'] = mean
 
-    fig, ax = plt.subplots(figsize = (8, 3))
+    fig, ax = plt.subplots(figsize = (7, 2.5))
 
     ax.set_facecolor('white')
 
