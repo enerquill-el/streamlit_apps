@@ -1502,6 +1502,8 @@ Profile_years = [col for col in df.columns if col.isdigit()]
 # -----------------------------------------------------
 Profile_production_base = np.array(Profile_production_base, dtype=float)
 Profile_price_base = np.array(Profile_price_base, dtype=float)
+Profile_capex_base = np.array(Profile_capex_base, dtype=float)
+Profile_opex_base = np.array(Profile_opex_base, dtype=float)
 Profile_revenue_base = Profile_production_base * Profile_price_base 
 
 # Identify Economic Cut-off post Revenue-based Royalty
@@ -1528,8 +1530,7 @@ st.write(type(Profile_opex_base))
 
 Profile_pre_tax_cf_base = Profile_revenue_base - Profile_royalty_base - Profile_capex_base - Profile_opex_base
 Profile_pre_tax_cf_cum_base = Profile_pre_tax_cf_base.cumsum()
-Profile_capex_base = np.array(Profile_capex_base, dtype=float)
-Profile_opex_base = np.array(Profile_opex_base, dtype=float)
+
 
 # Find the position of the max cumulative cash flow
 max_pos = Profile_pre_tax_cf_cum_base.argmax()
