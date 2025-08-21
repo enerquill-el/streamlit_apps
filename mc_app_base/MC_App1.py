@@ -1958,7 +1958,7 @@ if show_p50cf_chart:
 # -----------------------------------------------------
 # Calculate Inputs Required for Tornado
 # -----------------------------------------------------
-
+st.write(royalty_rate)
 def calc_econ_cutoff_flag(capex_array, price_array, production_array, opex_array, royalty_rate=royalty_rate if fiscal_regime == "Concession" and royalty_basis == "Revenues" else 0):
         revenue = price_array * production_array
         pretax_cf = revenue * ( 1 - royalty_rate/100) - capex_array - opex_array
