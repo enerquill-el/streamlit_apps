@@ -485,19 +485,44 @@ def plot_P50_cashflow(years_array, revenue_array, capex_array, opex_array, govt_
     padding = y_range * 0.05 # Add 5% padding to the top and bottom 
     ax.set_ylim(y_min - padding, y_max + padding)
 
-    y1_lo, y1_hi = ax.get_ylim()
-    y2_lo, y2_hi = ax2.get_ylim()
+    y1_min, y1_max = ax.get_ylim()
+    y2_min_data = cumulative_ncf.min()
+    y2_max_data = cumulative_ncf.max()
 
-    frac1 = (0 - y1_lo) / (y1_hi - y1_lo) if (y1_hi - y1_lo) != 0 else 0.5
+    overall_min = min(0, y2_min_data*1.1)
+    overall_max = max(0, y2_max_data*1.1)
+
+    if (y1_max - y1_min) != 0:
+        zero_point_ratio = (0 - y1_min) / (y1_max - y1_min)
+    else:
+        zero_point_ratio = 0.5
     
-    cum_range = y2_hi - y2_lo
-    padding = cum_range * 0.05  # 5% padding
+    y2_data_range = overall_max - overall_min
+    y2_padding = y2_data_range * 0.1 # Add 10% padding to ensure visibility
+
+    required_range = y2_data_range + 2 * y2_padding
 
     # Set new limits keeping 0 anchored
-    new_y2_lo = y2_lo - padding - frac1 * (cum_range - (y2_hi - y2_lo))
-    new_y2_hi = y2_hi + padding + (1 - frac1) * (cum_range - (y2_hi - y2_lo))
-    ax2.set_ylim(new_y2_lo, new_y2_hi)
+    if zero_point_ratio == 0:
+        # Primary axis 0 is at its minimum. Secondary axis 0 should also be at its minimum.
+        y2_new_min = 0
+        y2_new_max = max(required_range, overall_max + y2_padding)
+    elif zero_point_ratio == 1:
+        # Primary axis 0 is at its maximum. Secondary axis 0 should also be at its maximum.
+        y2_new_max = 0
+        y2_new_min = min(-required_range, overall_min - y2_padding)
+    else:
+        # Calculate the range based on the most extreme point relative to zero
+        range_from_zero_to_min = abs(overall_min) / zero_point_ratio if zero_point_ratio > 0 else 0
+        range_from_zero_to_max = abs(overall_max) / (1 - zero_point_ratio) if (1 - zero_point_ratio) > 0 else 0
+        
+        # The total range should be at least the required_range and also cover the extremes proportionally
+        R = max(required_range, range_from_zero_to_min, range_from_zero_to_max)
 
+        y2_new_min = -zero_point_ratio * R
+        y2_new_max = (1 - zero_point_ratio) * R
+
+    ax2.set_ylim(y2_new_min, y2_new_max)
 
     ax.legend(handles, labels, loc='upper left')
     ax.grid(True, axis='y', linestyle='--', alpha=0.3, color='#d3d3d3')
@@ -513,8 +538,8 @@ def plot_P50_cashflow(years_array, revenue_array, capex_array, opex_array, govt_
         if tick < 0:
             label.set_color('red')
 
-    #add_watermark(fig, ax, "mc_app_base/Enerquill_Logo.webp")
-    add_watermark(ax, "mc_app_base/Enerquill_Logo.webp")
+    #add_watermark(fig, ax, "Enerquill_Logo.webp")
+    add_watermark(ax, "Enerquill_Logo.webp")
     st.pyplot(fig)
 
 # Function - Plot P50 Cashflows with NCF Ranges
@@ -569,7 +594,6 @@ def plot_P50_cashflow_with_ranges(years_array, revenue_array, capex_array, opex_
     ax.set_xlabel('')
     ax.set_ylabel('Annual Cash Flow (USD mln)')
 
-    # Fix X-axis: integer year ticks only 
    # Fix X-axis: integer year ticks only 
     max_ticks = 20
     n_years = len(years)
@@ -595,18 +619,44 @@ def plot_P50_cashflow_with_ranges(years_array, revenue_array, capex_array, opex_
     padding = y_range * 0.05 # Add 5% padding to the top and bottom 
     ax.set_ylim(y_min - padding, y_max + padding)
 
-    y1_lo, y1_hi = ax.get_ylim()
-    y2_lo, y2_hi = ax2.get_ylim()
+    y1_min, y1_max = ax.get_ylim()
+    y2_min_data = cumulative_ncf.min()
+    y2_max_data = cumulative_ncf.max()
 
-    frac1 = (0 - y1_lo) / (y1_hi - y1_lo) if (y1_hi - y1_lo) != 0 else 0.5
+    overall_min = min(0, y2_min_data*1.1)
+    overall_max = max(0, y2_max_data*1.1)
 
-    cum_range = y2_hi - y2_lo
-    padding = cum_range * 0.05  # 5% padding
+    if (y1_max - y1_min) != 0:
+        zero_point_ratio = (0 - y1_min) / (y1_max - y1_min)
+    else:
+        zero_point_ratio = 0.5
+    
+    y2_data_range = overall_max - overall_min
+    y2_padding = y2_data_range * 0.1 # Add 10% padding to ensure visibility
+
+    required_range = y2_data_range + 2 * y2_padding
 
     # Set new limits keeping 0 anchored
-    new_y2_lo = y2_lo - padding - frac1 * (cum_range - (y2_hi - y2_lo))
-    new_y2_hi = y2_hi + padding + (1 - frac1) * (cum_range - (y2_hi - y2_lo))
-    ax2.set_ylim(new_y2_lo, new_y2_hi)
+    if zero_point_ratio == 0:
+        # Primary axis 0 is at its minimum. Secondary axis 0 should also be at its minimum.
+        y2_new_min = 0
+        y2_new_max = max(required_range, overall_max + y2_padding)
+    elif zero_point_ratio == 1:
+        # Primary axis 0 is at its maximum. Secondary axis 0 should also be at its maximum.
+        y2_new_max = 0
+        y2_new_min = min(-required_range, overall_min - y2_padding)
+    else:
+        # Calculate the range based on the most extreme point relative to zero
+        range_from_zero_to_min = abs(overall_min) / zero_point_ratio if zero_point_ratio > 0 else 0
+        range_from_zero_to_max = abs(overall_max) / (1 - zero_point_ratio) if (1 - zero_point_ratio) > 0 else 0
+        
+        # The total range should be at least the required_range and also cover the extremes proportionally
+        R = max(required_range, range_from_zero_to_min, range_from_zero_to_max)
+
+        y2_new_min = -zero_point_ratio * R
+        y2_new_max = (1 - zero_point_ratio) * R
+
+    ax2.set_ylim(y2_new_min, y2_new_max)
 
 
     ax.legend(handles, labels, loc='upper left')
@@ -624,8 +674,9 @@ def plot_P50_cashflow_with_ranges(years_array, revenue_array, capex_array, opex_
             label.set_color('red')
 
     #add_watermark(fig, ax, "Enerquill_Logo.webp")
-    add_watermark(ax, "mc_app_base/Enerquill_Logo.webp")
+    add_watermark(ax, "Enerquill_Logo.webp")
     st.pyplot(fig)
+
 
 # Function - Plot Tornado Chart
 def plot_tornado(df, base_case_NPV):
