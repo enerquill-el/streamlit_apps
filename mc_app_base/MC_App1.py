@@ -750,7 +750,7 @@ def plot_tornado(df, base_case_NPV):
 
     fig.subplots_adjust(left=0.25, right=0.95, top=0.95, bottom=0.15)
     plt.tight_layout()
-    add_watermark(ax, "mc_app_base/Enerquill_Logo.webp", 1, 0.1)
+    add_watermark(ax, "mc_app_base/Enerquill_Logo.webp", 1, 0.15)
 
     st.pyplot(fig)
 
