@@ -2053,6 +2053,8 @@ if show_tornado_chart:
 # -----------------------------------------------------
 
     font_size("Tornado Chart", 18)
+    if run_monte_carlo and run_price_volatility:
+        st.caption("The tornado chart excludes price sensitivities as the demo excludes options for different long-run means. Price volatility processes are propagated by N(0,1).")
     set_chart_style(fig_height=4)
     plot_tornado(tornado_df, NPV_P50)
     st.markdown("---")
