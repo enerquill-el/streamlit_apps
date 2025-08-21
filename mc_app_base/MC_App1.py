@@ -1521,10 +1521,10 @@ if fiscal_regime == "Concession":
 else:
     Profile_royalty_base = np.zeros_like(Profile_revenue_base)
 
-st.write(len(Profile_revenue_base))
-st.write(len(Profile_royalty_base))
-st.write(len(Profile_capex_base))
-st.write(len(Profile_opex_base))
+st.write(type(Profile_revenue_base))
+st.write(type(Profile_royalty_base))
+st.write(type(Profile_capex_base))
+st.write(type(Profile_opex_base))
 
 Profile_pre_tax_cf_base = Profile_revenue_base - Profile_royalty_base - Profile_capex_base - Profile_opex_base
 Profile_pre_tax_cf_cum_base = Profile_pre_tax_cf_base.cumsum()
