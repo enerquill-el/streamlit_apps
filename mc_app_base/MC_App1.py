@@ -1547,7 +1547,7 @@ chart_length = int(sum(econ_cutoff_flag))
 font_size("📈 Economic Cut-off", 18)
 st.caption("Economic cut-off determines the project life for subsequent calculations. This snippet illustrates how interim calculations can be displayed in spreadsheet format to address issues around calculation transparency.")
 
-Profile_pre_tax_cf_display = Profile_revenue_base - Profile_royalty - Profile_capex_base - Profile_opex_base
+Profile_pre_tax_cf_display = Profile_revenue_base - Profile_royalty_base - Profile_capex_base - Profile_opex_base
 Profile_pre_tax_cf_cum_display = Profile_pre_tax_cf_display.cumsum()
 
 pre_tax_cf_rows = [
