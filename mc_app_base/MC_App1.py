@@ -1505,22 +1505,30 @@ Profile_price_base = np.array(Profile_price_base, dtype=float)
 Profile_revenue_base = Profile_production_base * Profile_price_base 
 
 # Identify Economic Cut-off post Revenue-based Royalty
-if fiscal_regime == "Concession" and royalty_basis == "Revenues":
-    Rate_royalty_revenue = royalty_rate/100
-else:
-    Rate_royalty_revenue = 0
+if fiscal_regime == "Concession":
+    Rate_royalty = royalty_rate/100
+    if royalty_basis == "Revenues":
+        Profile_royalty_base = Profile_revenue_base * Rate_royalty 
+    else:
+        if royalty_capex_depreciation_method == "Straight Line":
+            depreciation_base = calc_straight_line_depreciation(Profile_capex_base, Profile_production_base, royalty_dep_sl_years)
+        elif royalty_capex_depreciation_method == "Declining Balance":
+            depreciation_base = calc_declining_balance_depreciation(Profile_capex_base, Profile_production_base, royalty_dep_sl_years)
+        else:
+            depreciation_base = Profile_capex_base
+        Profile_royalty_base = (Profile_revenue_base - depreciation_base - Profile_opex_base) * Rate_royalty
 
+else:
+    Profile_royalty_base = np.zeros_like(Profile_revenue_base)
+
+Profile_pre_tax_cf_base = Profile_revenue_base - Profile_royalty_base - Profile_capex_base - Profile_opex_base
+Profile_pre_tax_cf_cum_base = Profile_pre_tax_cf_base.cumsum()
 Profile_capex_base = np.array(Profile_capex_base, dtype=float)
 Profile_opex_base = np.array(Profile_opex_base, dtype=float)
-
-Profile_pre_tax_cf_base = Profile_revenue_base * (1 - Rate_royalty_revenue) - Profile_capex_base - Profile_opex_base
-Profile_pre_tax_cf_cum_base = Profile_pre_tax_cf_base.cumsum()
 
 # Find the position of the max cumulative cash flow
 max_pos = Profile_pre_tax_cf_cum_base.argmax()
 max_val = Profile_pre_tax_cf_cum_base[max_pos]
-
-
 
 Profile_years_numeric = pd.Series(pd.to_numeric(df.columns[2:], errors='coerce'))
 valid_mask = Profile_years_numeric.notna()
