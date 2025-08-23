@@ -1316,7 +1316,7 @@ with st.sidebar:
     client = gspread.authorize(creds)
 
     # Open Google Sheet by URL or name
-    SHEET_URL = "https://docs.google.com/spreadsheets/d/your-sheet-id/edit#gid=0"
+    SHEET_URL = "https://docs.google.com/spreadsheets/d/1SgNWYDiChrnilb-Bg369Qu2xsXrOYzu6woBTJu07H7E/edit?gid=0#gid=0"
     sheet = client.open_by_url(SHEET_URL).sheet1  # first sheet
     
     # --- STREAMLIT FORM ---
