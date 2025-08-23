@@ -8,3 +8,5 @@ Pillow
 streamlit-aggrid
 streamlit-toggle
 openpyxl
+gspread
+google-auth
