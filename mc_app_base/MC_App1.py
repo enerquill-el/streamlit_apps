@@ -766,11 +766,11 @@ st.markdown(
     """
     <style>
     [data-testid="stSidebar"][aria-expanded="true"] > div:first-child {
-        width: 380px;
+        width: 450px;
     }
     [data-testid="stSidebar"][aria-expanded="false"] > div:first-child {
-        width: 380px;
-        margin-left: -350px;
+        width: 450px;
+        margin-left: -450px;
     }
     </style>
     """,
