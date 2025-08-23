@@ -765,6 +765,21 @@ st.write("")
 st.markdown(
     """
     <style>
+    [data-testid="stSidebar"][aria-expanded="true"] > div:first-child {
+        width: 350px;
+    }
+    [data-testid="stSidebar"][aria-expanded="false"] > div:first-child {
+        width: 350px;
+        margin-left: -350px;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
+st.markdown(
+    """
+    <style>
     .ag-header-cell-label {
         justify-content: center;
     }
