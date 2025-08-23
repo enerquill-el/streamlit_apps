@@ -757,8 +757,8 @@ def plot_tornado(df, base_case_NPV):
 # --------------------------------------------------------------
 # Configure page for wide layout and title
 # --------------------------------------------------------------
-st.set_page_config("Monte Carlo simulation", layout="wide", initial_sidebar_state="expanded")
-st.title("Monte Carlo Simulator")
+st.set_page_config("Monte Carlo simulation", layout="wide", initial_sidebar_state="auto")
+st.title("Monte Carlo Simulator (Beta v1.0)")
 st.caption("*This simulator has been designed to demonstrate functionality and simplified assumptions have been used. Outputs from this simulator should not be used for decision making purposes.*")
 st.write("")
 
