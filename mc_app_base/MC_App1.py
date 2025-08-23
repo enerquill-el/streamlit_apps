@@ -14,6 +14,8 @@ import matplotlib.pyplot as plt
 import matplotlib.ticker as mticker 
 from PIL import Image, ImageDraw, ImageFont 
 from matplotlib.offsetbox import OffsetImage, AnnotationBbox
+import gspread
+from google.oauth2.service_account import Credentials
 
 # ---------------------------------------------------
 # HELPER FUNCTIONS
@@ -1298,7 +1300,43 @@ with st.sidebar:
             run_mc_button = st.button("▶ Run Simulation", type="primary")
             progress_placeholder = st.empty()
             time_placeholder = st.empty()
-      
+        
+        st.write("---")
+
+    st.header("Feedback Form")
+    scope = [
+    "https://spreadsheets.google.com/feeds",
+    "https://www.googleapis.com/auth/drive"
+    ]
+    
+    creds = Credentials.from_service_account_info(
+        st.secrets["gcp_service_account"], scopes=scope
+    )
+    
+    client = gspread.authorize(creds)
+
+    # Open Google Sheet by URL or name
+    SHEET_URL = "https://docs.google.com/spreadsheets/d/your-sheet-id/edit#gid=0"
+    sheet = client.open_by_url(SHEET_URL).sheet1  # first sheet
+    
+    # --- STREAMLIT FORM ---
+    with st.form("feedback_form"):
+        name = st.text_input("Your name")
+        email = st.text_input("Your email")
+        feedback = st.text_area("Your feedback")
+    
+        submitted = st.form_submit_button("Submit")
+    
+    if submitted:
+        if name and email and feedback:
+            sheet.append_row([name, email, feedback])
+            st.success("✅ Thanks, your feedback was received!")
+        else:
+            st.error("Please fill in all fields.")
+
+
+    
+                
 # -----------------------------------------
 # Generate Dynamic P50 Profile for Default
 # -----------------------------------------
