@@ -1301,8 +1301,8 @@ with st.sidebar:
             progress_placeholder = st.empty()
             time_placeholder = st.empty()
         
-        st.write("---")
-
+        
+    st.markdown("---")
     st.header("Feedback Form")
     scope = [
     "https://spreadsheets.google.com/feeds",
