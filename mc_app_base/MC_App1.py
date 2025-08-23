@@ -2142,7 +2142,7 @@ def plot_s_curve(df, column, kind='S-Curve', metric_label="NPV (USD mln)", pzero
     
     title_text = 'Probability of Exceedance' if kind=='Probability of Exceedance' else 'S-Curve'
     ax.set_title(f"{metric_label} - {title_text}")
-    ax.grid(True, axis='y', linewidth=0.5, alpha=0.4)
+    ax.grid(True, axis='y', linewidth=0.2, alpha=0.4, linestyle="--")
 
     if quantile_clip is not None:
         x_min = np.quantile(data, 1 - quantile_clip)
