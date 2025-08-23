@@ -1304,6 +1304,7 @@ with st.sidebar:
         
     st.markdown("---")
     st.header("Feedback Form")
+    st.markdown("Please use the user feedback form below for queries or to provide feedback on our simulator. We will reply directly to your email.")
     scope = [
     "https://spreadsheets.google.com/feeds",
     "https://www.googleapis.com/auth/drive"
